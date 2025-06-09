@@ -1,0 +1,33 @@
+- name: Tests Coverage Report
+# You may pin to the exact commit or the version.
+# uses: aGallea/tests-coverage-report@50d8f87487263028f6ceb5b0eaf3c0472859bd91
+uses: aGallea/tests-coverage-report@v1
+with:
+  # GitHub API Access Token
+  github-token: # default is ${{ github.token }}
+  # Title for the comment
+  title: # optional, default is Tests Report
+  # The location of the cobertura coverage xml file
+  cobertura-path: # optional, default is ./coverage/cobertura-coverage.xml
+  # The location of the clover coverage xml file
+  clover-path: # optional, default is ./coverage/clover.xml
+  # The location of the lcov coverage info file
+  lcov-path: # optional, default is ./coverage/lcov.info
+  # The location of the jacoco coverage xml file
+  jacoco-path: # optional, default is ./target/site/jacoco/jacoco.xml
+  # The location of the junit xml file
+  junit-path: # optional, default is ./coverage/junit.xml
+  # Show JUnit details on comment
+  show-junit: # optional, default is true
+  # Diff coverage report referral
+  diffcover-ref: # optional, default is cobertura
+  # Show coverage report details on comment
+  show-diffcover: # optional, default is true
+  # Minimum coverage percentage
+  min-coverage-percentage: # optional, default is 80
+  # Fail job when coverage percentage is below the minimum
+  fail-under-coverage-percentage: # optional, default is true
+  # Show failures info on comment
+  show-failures-info: # optional, default is false
+  # Overrides existing coverage comment
+  override-comment: # optional, default is true
