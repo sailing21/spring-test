@@ -1,0 +1,35 @@
+name: Run Integration Tests with JaCoCo in Docker
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set up JDK 21
+        uses: actions/setup-java@v3
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+
+      - name: Build Docker image
+        run: docker build -t my-springboot-app .
+
+      - name: Run integration tests in container
+        run: |
+          docker run --rm -v ${PWD}/target:/app/target my-springboot-app \
+            ./mvnw test
+
+      - name: Check JaCoCo report existence
+        run: ls -la target/site/jacoco/
+
+      - name: Upload JaCoCo report as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: jacoco-report
+          path: target/site/jacoco/
