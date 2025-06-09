@@ -10,4 +10,4 @@ RUN chmod +x mvnw
 # 构建应用并跳过测试（我们后面在容器里再运行）
 RUN ./mvnw clean package -DskipTests
 
-CMD ["java", "-jar", "target/your-app.jar"]
+CMD ["java", "-jar", "target/demo-0.0.1-SNAPSHOT.jar"]
