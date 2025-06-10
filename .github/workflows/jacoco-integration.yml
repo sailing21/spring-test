@@ -25,7 +25,7 @@ jobs:
       - name: Run integration tests in container
         run: |
           docker run --rm -v ${PWD}/target:/app/target my-springboot-app \
-            ./mvnw test
+            ./mvnw verify
 
       - name: Check JaCoCo report existence
         run: ls -la target/site/jacoco/
