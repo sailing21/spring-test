@@ -22,13 +22,24 @@ jobs:
       - name: Build Docker image
         run: docker build -t my-springboot-app .
 
-      - name: Run integration tests in container
-        run: |
-          docker run --rm -v ${PWD}/target:/app/target my-springboot-app \
-            ./mvnw verify
+      - name: Start MySQL container
+        run: |          docker run --name mysql-test -e MYSQL_ROOT_PASSWORD=123 \
+          -e MYSQL_DATABASE=testdb -p 3306:3306 -d mysql:8.0
 
-      - name: Check JaCoCo report existence
-        run: ls -la target/site/jacoco/
+      - name: Wait for MySQL to be ready
+        run: |          until mysqladmin ping -h host.docker.internal -u root -p123 --silent; do
+          echo "Waiting for MySQL..."
+          sleep 1
+          done
+
+      - name: Run integration tests with database
+        run: |          docker run --rm \
+          -e SPRING_DATASOURCE_URL=jdbc:mysql://host.docker.internal:3306/testdb \
+          -e SPRING_DATASOURCE_USERNAME=root \
+          -e SPRING_DATASOURCE_PASSWORD=123 \
+          -v ${PWD}/target:/app/target \
+          my-springboot-app \
+          ./mvnw verify
 
       - name: Upload JaCoCo report as artifact
         uses: actions/upload-artifact@v4
