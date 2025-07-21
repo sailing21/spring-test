@@ -21,6 +21,7 @@ public class HomeControllerIntegrationTest {
     @Autowired
     private WebApplicationContext webApplicationContext;
 
+    @Autowired
     private MockMvc mockMvc;
 
     @BeforeEach
