@@ -25,6 +25,7 @@ public class HomeControllerIntegrationTest {
 
     @BeforeEach
     void setup() {
+        mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
         System.out.println("webApplicationContext: " + webApplicationContext);
         mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
     }
