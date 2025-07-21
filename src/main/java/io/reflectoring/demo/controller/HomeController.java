@@ -14,6 +14,7 @@ public class HomeController {
     public String home(
             @RequestParam  (required = false, defaultValue = "0") int a
     ) {
+        System.out.println("a = " + a);
         return innerService.getMessage(a);
     }
 }
