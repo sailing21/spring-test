@@ -24,7 +24,7 @@ public class HomeControllerIntegrationTest {
     @Autowired
     private MockMvc mockMvc;
     @Autowired
-    private TestRestTemplate restTemplate;
+    private TestRestTemplae restTemplate;
 
     @BeforeEach
     void setup() {
