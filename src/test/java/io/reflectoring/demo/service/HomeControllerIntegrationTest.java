@@ -34,6 +34,10 @@ public class HomeControllerIntegrationTest {
         System.out.println("mockMvc: " + mockMvc);
         mockMvc.perform(get("/"))
                 .andExpect(status().isOk())
+                .andExpect(content().string("Hello World!"));
+
+        mockMvc.perform(get("/"))
+                .andExpect(status().isOk())
                 .andExpect(content().string("Saved user: Test User 0"));
     }
 
