@@ -23,6 +23,7 @@ public class HomeControllerIntegrationTest {
 
     @Autowired
     private MockMvc mockMvc;
+    @Autowired
 
     @BeforeEach
     void setup() {
