@@ -25,11 +25,13 @@ public class HomeControllerIntegrationTest {
 
     @BeforeEach
     void setup() {
+        System.out.println("webApplicationContext: " + webApplicationContext);
         mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
     }
 
     @Test
     void testHomeEndpointWithDefaultParam() throws Exception {
+        System.out.println("mockMvc: " + mockMvc);
         mockMvc.perform(get("/"))
                 .andExpect(status().isOk())
                 .andExpect(content().string("Saved user: Test User 0"));
