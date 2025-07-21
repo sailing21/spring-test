@@ -14,6 +14,7 @@ public class InnerService {
     public String getMessage(int a) {
         User user = new User("Test User " + a);
         userRepository.save(user);
+        System.out.println("user = " + user);
         return "Saved user: " + user.getName();
     }
 }
