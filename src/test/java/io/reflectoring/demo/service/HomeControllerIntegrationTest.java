@@ -31,6 +31,7 @@ public class HomeControllerIntegrationTest {
 
     @Test
     void testHomeEndpointWithDefaultParam() throws Exception {
+        System.out.println("mockMvc: " + mockMvc);
         mockMvc.perform(get("/"))
                 .andExpect(status().isOk())
                 .andExpect(content().string("Saved user: Test User 0"));
